@@ -12,11 +12,11 @@ import net.minecraft.text.TranslatableText;
 public class ModMenuImpl implements ModMenuApi {
 
     public Text categoryTest(String str) {
-        return new TranslatableText("category.extendedarmorbars.toughnessbar." + str);
+        return new TranslatableText("category.rebelkeithy.extendedarmorbars." + str);
     }
 
     public Text optionText(String str) {
-        return new TranslatableText("option.extendedarmorbars.toughnessbar." + str);
+        return new TranslatableText("option.rebelkeithy.extendedarmorbars." + str);
     }
 
     @Override
@@ -46,6 +46,15 @@ public class ModMenuImpl implements ModMenuApi {
                         ToughnessBar.config.setArmorEnable(value);
                         ToughnessBar.saveAndReloadConfig();
                     })
+                    .setTooltip(optionText("armorenabledescription"))
+                    .build());
+
+            category.addEntry(entryBuilder.startBooleanToggle(optionText("armorhidewhenempty"), ToughnessBar.config.isArmorHideWhenEmpty())
+                    .setDefaultValue(defaultConfig.isArmorHideWhenEmpty())
+                    .setSaveConsumer(value -> {
+                        ToughnessBar.config.setArmorHideWhenEmpty(value);
+                        ToughnessBar.saveAndReloadConfig();
+                    })
                     .build());
 
             category.addEntry(entryBuilder.startBooleanToggle(optionText("toughnessenable"), ToughnessBar.config.isToughnessEnable())
@@ -67,7 +76,7 @@ public class ModMenuImpl implements ModMenuApi {
             category.addEntry(entryBuilder.startBooleanToggle(optionText("toughnesshidewhenempty"), ToughnessBar.config.isToughnessHideWhenEmpty())
                     .setDefaultValue(defaultConfig.isToughnessHideWhenEmpty())
                     .setSaveConsumer(value -> {
-                        ToughnessBar.config.setToughnessHideEmptySlots(value);
+                        ToughnessBar.config.setToughnessHideWhenEmpty(value);
                         ToughnessBar.saveAndReloadConfig();
                     })
                     .build());

@@ -12,7 +12,7 @@ public class Config {
     private boolean armorHideEmptySlots = false;
     private boolean toughnessEnable = true;
     private boolean toughnessHideWhenEmpty = true;
-    private boolean toughnessHideEmptySlots = true;
+    private boolean toughnessHideEmptySlots = false;
     private List<String> colors = List.of("#ECEEFF", "#FF5500", "#FFC747", "#27FFE3", "#00FF00", "#7F00FF");
     private transient DefaultList<Color> parsedColors;
 

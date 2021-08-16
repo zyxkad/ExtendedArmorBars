@@ -1,6 +1,7 @@
 {
   "option.rebelkeithy.extendedarmorbars.colors": "Colors",
   "option.rebelkeithy.extendedarmorbars.armorenable": "Enable Armor Bar",
+  "option.rebelkeithy.extendedarmorbars.armorenabledescription": "Disabling this will only disable this mods\noverriding of the armor bar. It will NOT\ndisable the armor bar completely.",
   "option.rebelkeithy.extendedarmorbars.armorhidewhenempty": "Hide Armor Bar When Empty",
   "option.rebelkeithy.extendedarmorbars.toughnessenable": "Enable Toughness Bar",
   "option.rebelkeithy.extendedarmorbars.toughnesshidebackground": "Hide Background for Toughness Bar",

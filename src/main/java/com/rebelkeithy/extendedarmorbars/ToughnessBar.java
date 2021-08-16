@@ -13,9 +13,10 @@ import net.minecraft.util.math.MathHelper;
 
 public class ToughnessBar implements ModInitializer {
 
+	public static final String MOD_ID = "extendedarmorbars";
 	private static final String CONFIG_FILE = "config.json";
-	private static final Identifier ARMOR = new Identifier("toughnessbar", "textures/gui/armor.png");
-	private static final Identifier TOUGHNESS = new Identifier("toughnessbar", "textures/gui/toughness.png");
+	private static final Identifier ARMOR = new Identifier(MOD_ID, "textures/gui/armor.png");
+	private static final Identifier TOUGHNESS = new Identifier(MOD_ID, "textures/gui/toughness.png");
 
 	public static Config config;
 	public static StatusBarRenderer armorBar;
@@ -34,8 +35,8 @@ public class ToughnessBar implements ModInitializer {
 		armorBar.hideEmptySlots = config.isArmorHideEmptySlots();
 		armorBar.hideWhenEmpty = config.isArmorHideWhenEmpty();
 		toughnessBar = new StatusBarRenderer(TOUGHNESS, config.getParsedColors(), true);
+		toughnessBar.hideEmptySlots = config.isToughnessHideEmptySlots();
 		toughnessBar.hideWhenEmpty = config.isToughnessHideWhenEmpty();
-		toughnessBar.hideEmptySlots = config.isToughnessHideWhenEmpty();
 	}
 
 	public static void render(MatrixStack matrices) {

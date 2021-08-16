@@ -76,6 +76,7 @@ public class StatusBarRenderer {
     public void drawLayer(MatrixStack matrices, int x, int y, int layerIndex, int numIcons) {
         setColor(colors.get(layerIndex));
         int type = getUForLayerIndex(layerIndex);
+        if (type == U_EMPTY && hideEmptySlots) return;
         drawTiled(matrices, x, y, type, 0, ICON_WIDTH, ICON_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT, numIcons, 1, OVERLAP, 0);
     }
 
