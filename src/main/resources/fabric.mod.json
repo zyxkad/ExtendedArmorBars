@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "extended_armor_bars",
+  "version": "${version}",
+
+  "name": "Extended Armor Bars",
+  "description": "Adds an armor toughness bar and allows both it and the armor bar to go above 20",
+  "authors": [
+    "RebelKeithy"
+  ],
+  "contact": {
+    "homepage": "<todo>",
+    "sources": "<todo>"
+  },
+  "contributors": [
+    "Tfarcenim (textures)"
+  ],
+
+  "license": "MIT",
+  "icon": "assets/extendedarmorbars/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.rebelkeithy.extendedarmorbars.ToughnessBar"
+    ],
+    "modmenu": [
+      "com.rebelkeithy.extendedarmorbars.ModMenuImpl"
+    ]
+  },
+  "mixins": [
+    "extendedarmorbars.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/jEGF5fb"
+      }
+    }
+  }
+}
