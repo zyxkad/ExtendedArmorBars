@@ -9,5 +9,5 @@
   "option.rebelkeithy.extendedarmorbars.toughnesshidewhenempty": "Hide Toughness Bar When Empty",
   "option.rebelkeithy.extendedarmorbars.armorbaroffset": "Armor Bar Y Offset",
   "option.rebelkeithy.extendedarmorbars.toughnessbaroffset": "Toughness Bar Y Offset",
-  "option.rebelkeithy.extendedarmorbars.onehealthbar": "Don't move armor bar when over 10 hears"
+  "option.rebelkeithy.extendedarmorbars.onehealthbar": "Don't move armor bar when over 10 hearts"
 }
