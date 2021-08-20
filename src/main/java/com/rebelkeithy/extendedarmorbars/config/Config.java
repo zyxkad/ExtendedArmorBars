@@ -13,6 +13,9 @@ public class Config {
     private boolean toughnessEnable = true;
     private boolean toughnessHideWhenEmpty = true;
     private boolean toughnessHideEmptySlots = false;
+    private int armorBarOffset = 0;
+    private int toughnessBarOffset = 0;
+    private boolean oneHealthBar = false;
     private List<String> colors = List.of("#ECEEFF", "#FF5500", "#FFC747", "#27FFE3", "#00FF00", "#7F00FF");
     private transient DefaultList<Color> parsedColors;
 
@@ -88,5 +91,29 @@ public class Config {
 
     public void setToughnessHideEmptySlots(boolean toughnessHideEmptySlots) {
         this.toughnessHideEmptySlots = toughnessHideEmptySlots;
+    }
+
+    public int getArmorBarOffset() {
+        return armorBarOffset;
+    }
+
+    public void setArmorBarOffset(int armorBarOffset) {
+        this.armorBarOffset = armorBarOffset;
+    }
+
+    public int getToughnessBarOffset() {
+        return toughnessBarOffset;
+    }
+
+    public void setToughnessBarOffset(int toughnessBarOffset) {
+        this.toughnessBarOffset = toughnessBarOffset;
+    }
+
+    public boolean isOneHealthBar() {
+        return oneHealthBar;
+    }
+
+    public void setOneHealthBar(boolean oneHealthBar) {
+        this.oneHealthBar = oneHealthBar;
     }
 }

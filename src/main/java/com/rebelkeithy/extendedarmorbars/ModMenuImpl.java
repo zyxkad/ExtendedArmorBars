@@ -49,10 +49,34 @@ public class ModMenuImpl implements ModMenuApi {
                     .setTooltip(optionText("armorenabledescription"))
                     .build());
 
+            category.addEntry(entryBuilder.startBooleanToggle(optionText("armorhidebackground"), ToughnessBar.config.isArmorHideEmptySlots())
+                    .setDefaultValue(defaultConfig.isArmorHideEmptySlots())
+                    .setSaveConsumer(value -> {
+                        ToughnessBar.config.setArmorHideEmptySlots(value);
+                        ToughnessBar.saveAndReloadConfig();
+                    })
+                    .build());
+
             category.addEntry(entryBuilder.startBooleanToggle(optionText("armorhidewhenempty"), ToughnessBar.config.isArmorHideWhenEmpty())
                     .setDefaultValue(defaultConfig.isArmorHideWhenEmpty())
                     .setSaveConsumer(value -> {
                         ToughnessBar.config.setArmorHideWhenEmpty(value);
+                        ToughnessBar.saveAndReloadConfig();
+                    })
+                    .build());
+
+            category.addEntry(entryBuilder.startIntField(optionText("armorbaroffset"), ToughnessBar.config.getArmorBarOffset())
+                    .setDefaultValue(defaultConfig.getArmorBarOffset())
+                    .setSaveConsumer(value -> {
+                        ToughnessBar.config.setArmorBarOffset(value);
+                        ToughnessBar.saveAndReloadConfig();
+                    })
+                    .build());
+
+            category.addEntry(entryBuilder.startBooleanToggle(optionText("onehealthbar"), ToughnessBar.config.isOneHealthBar())
+                    .setDefaultValue(defaultConfig.isOneHealthBar())
+                    .setSaveConsumer(value -> {
+                        ToughnessBar.config.setOneHealthBar(value);
                         ToughnessBar.saveAndReloadConfig();
                     })
                     .build());
@@ -77,6 +101,14 @@ public class ModMenuImpl implements ModMenuApi {
                     .setDefaultValue(defaultConfig.isToughnessHideWhenEmpty())
                     .setSaveConsumer(value -> {
                         ToughnessBar.config.setToughnessHideWhenEmpty(value);
+                        ToughnessBar.saveAndReloadConfig();
+                    })
+                    .build());
+
+            category.addEntry(entryBuilder.startIntField(optionText("toughnessbaroffset"), ToughnessBar.config.getToughnessBarOffset())
+                    .setDefaultValue(defaultConfig.getToughnessBarOffset())
+                    .setSaveConsumer(value -> {
+                        ToughnessBar.config.setToughnessBarOffset(value);
                         ToughnessBar.saveAndReloadConfig();
                     })
                     .build());

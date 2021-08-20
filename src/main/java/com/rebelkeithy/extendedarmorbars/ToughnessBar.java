@@ -2,6 +2,7 @@ package com.rebelkeithy.extendedarmorbars;
 
 import com.rebelkeithy.extendedarmorbars.config.Config;
 import com.rebelkeithy.extendedarmorbars.config.ConfigLoader;
+import com.rebelkeithy.extendedarmorbars.mixin.InGameHudMixin;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -21,6 +22,7 @@ public class ToughnessBar implements ModInitializer {
 	public static Config config;
 	public static StatusBarRenderer armorBar;
 	public static StatusBarRenderer toughnessBar;
+	public static int armorYValue = 0;
 
 	@Override
 	public void onInitialize() {
@@ -49,6 +51,7 @@ public class ToughnessBar implements ModInitializer {
 			if (config.isArmorEnable()) {
 				int x = scaledWidth / 2 - 91;
 				int y = scaledHeight + getArmorYOffset(player);
+				if (armorYValue != 0) y = armorYValue - config.getArmorBarOffset();
 				int value = player.getArmor();
 				armorBar.render(matrices, x, y, value);
 			}
@@ -68,8 +71,11 @@ public class ToughnessBar implements ModInitializer {
 		float actualHealth = Math.max((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH), Math.max(renderedHealth, health));
 		int absorption = MathHelper.ceil(player.getAbsorptionAmount());
 		int healthBarRows = MathHelper.ceil((actualHealth + (float)absorption) / 2.0F / 10.0F);
+		if(config.isOneHealthBar()) {
+			healthBarRows = 1;
+		}
 		int r = Math.max(10 - (healthBarRows - 2), 3);
-		return -39 - (healthBarRows - 1) * r - 10;
+		return -39 - (healthBarRows - 1) * r - 10 - config.getArmorBarOffset();
 	}
 
 	private static int getToughnessYOffset(ClientPlayerEntity player) {
@@ -79,6 +85,6 @@ public class ToughnessBar implements ModInitializer {
 		if (player.isSubmergedIn(FluidTags.WATER) || aa < z) {
 			y -= 10;
 		}
-		return y;
+		return y - config.getToughnessBarOffset();
 	}
 }
