@@ -4,12 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
-public class ConfigLoader {
-    private static final String CONFIG_DIR = FabricLoader.getInstance().getConfigDir() + "\\";
+public final class ConfigLoader {
+    private ConfigLoader(){}
 
-    public Config loadConfigFile(String filename) {
+    private static final String CONFIG_DIR = FabricLoader.getInstance().getConfigDir().toString();
+
+    public static Config loadConfigFile(String filename) {
         Config config;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
@@ -17,14 +23,14 @@ public class ConfigLoader {
         } catch (FileNotFoundException e) {
             System.out.println("Generating config file for mod: toughness bars.");
             config = new Config();
+            saveConfigFile(filename, config);
         }
-        saveConfigFile(filename, config);
         return config;
     }
 
-    public void saveConfigFile(String filename, Config config) {
+    public static void saveConfigFile(String filename, Config config) {
         try {
-            var writer = new FileWriter(CONFIG_DIR + filename);
+            var writer = new FileWriter(new File(CONFIG_DIR, filename));
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(config, writer);
             writer.flush();

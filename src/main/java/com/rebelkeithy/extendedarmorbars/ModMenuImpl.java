@@ -7,16 +7,15 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public class ModMenuImpl implements ModMenuApi {
 
     public Text categoryTest(String str) {
-        return new TranslatableText("category.rebelkeithy.extendedarmorbars." + str);
+        return Text.translatable("category.rebelkeithy.extendedarmorbars." + str);
     }
 
     public Text optionText(String str) {
-        return new TranslatableText("option.rebelkeithy.extendedarmorbars." + str);
+        return Text.translatable("option.rebelkeithy.extendedarmorbars." + str);
     }
 
     @Override

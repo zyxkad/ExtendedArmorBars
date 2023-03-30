@@ -11,14 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-
 	@Inject(at = @At("TAIL"), method = "renderStatusBars(Lnet/minecraft/client/util/math/MatrixStack;)V")
 	private void init(MatrixStack matrices, CallbackInfo info) {
 		ToughnessBar.render(matrices);
 	}
 
-
-	@ModifyArg(method = "renderStatusBars(Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/hud/InGameHud.drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIIIII)V"), index = 5)
+	@ModifyArg(method = "renderStatusBars(Lnet/minecraft/client/util/math/MatrixStack;)V",
+		at = @At(value = "INVOKE",
+			target = "net/minecraft/client/gui/hud/InGameHud.drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIIIII)V"),
+		index = 5)
 	private int render(MatrixStack matrices, int x, int y, int u, int v, int width, int height) {
 		if(ToughnessBar.config.isArmorEnable() && (u == 34 || u == 25 || u == 16) && v == 9) {
 			ToughnessBar.armorYValue = y;

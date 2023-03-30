@@ -1,5 +1,6 @@
 package com.rebelkeithy.extendedarmorbars;
 
+import java.nio.file.Paths;
 import com.rebelkeithy.extendedarmorbars.config.Config;
 import com.rebelkeithy.extendedarmorbars.config.ConfigLoader;
 import com.rebelkeithy.extendedarmorbars.mixin.InGameHudMixin;
@@ -15,7 +16,7 @@ import net.minecraft.util.math.MathHelper;
 public class ToughnessBar implements ModInitializer {
 
 	public static final String MOD_ID = "extendedarmorbars";
-	private static final String CONFIG_FILE = "config.json";
+	private static final String CONFIG_FILE = MOD_ID + ".json";
 	private static final Identifier ARMOR = new Identifier(MOD_ID, "textures/gui/armor.png");
 	private static final Identifier TOUGHNESS = new Identifier(MOD_ID, "textures/gui/toughness.png");
 
@@ -26,13 +27,13 @@ public class ToughnessBar implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		config = new ConfigLoader().loadConfigFile(CONFIG_FILE);
+		config = ConfigLoader.loadConfigFile(CONFIG_FILE);
 		armorBar = new StatusBarRenderer(ARMOR, config.getParsedColors());
 		toughnessBar = new StatusBarRenderer(TOUGHNESS, config.getParsedColors(), true);
 	}
 
 	public static void saveAndReloadConfig() {
-		new ConfigLoader().saveConfigFile(CONFIG_FILE, config);
+		ConfigLoader.saveConfigFile(CONFIG_FILE, config);
 		armorBar = new StatusBarRenderer(ARMOR, config.getParsedColors());
 		armorBar.hideEmptySlots = config.isArmorHideEmptySlots();
 		armorBar.hideWhenEmpty = config.isArmorHideWhenEmpty();
@@ -50,8 +51,7 @@ public class ToughnessBar implements ModInitializer {
 
 			if (config.isArmorEnable()) {
 				int x = scaledWidth / 2 - 91;
-				int y = scaledHeight + getArmorYOffset(player);
-				if (armorYValue != 0) y = armorYValue - config.getArmorBarOffset();
+				int y = armorYValue + scaledHeight + getArmorYOffset(player);
 				int value = player.getArmor();
 				armorBar.render(matrices, x, y, value);
 			}
@@ -70,7 +70,7 @@ public class ToughnessBar implements ModInitializer {
 		int renderedHealth = health; //this.renderHealthValue;
 		float actualHealth = Math.max((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH), Math.max(renderedHealth, health));
 		int absorption = MathHelper.ceil(player.getAbsorptionAmount());
-		int healthBarRows = MathHelper.ceil((actualHealth + (float)absorption) / 2.0F / 10.0F);
+		int healthBarRows = MathHelper.ceil((actualHealth + (float)absorption) / 20.0F);
 		if(config.isOneHealthBar()) {
 			healthBarRows = 1;
 		}
