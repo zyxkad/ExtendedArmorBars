@@ -51,7 +51,7 @@ public class ToughnessBar implements ModInitializer {
 
 			if (config.isArmorEnable()) {
 				int x = scaledWidth / 2 - 91;
-				int y = armorYValue + scaledHeight + getArmorYOffset(player);
+				int y = armorYValue == 0 ?scaledHeight + getArmorYOffset(player) :armorYValue - config.getArmorBarOffset();
 				int value = player.getArmor();
 				armorBar.render(matrices, x, y, value);
 			}
